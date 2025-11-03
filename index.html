@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOO Safari – Poznaj świat zwierząt!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f7f2;
+            color: #333;
+        }
+
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #388e3c;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h2 {
+            color: #2e7d32;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .gallery img {
+            width: 300px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .animal-section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌿 ZOO Safari – Poznaj świat zwierząt!</h1>
+        <p>Zapraszamy do świata natury i egzotycznych stworzeń!</p>
+    </header>
+
+    <nav>
+        <a href="#ssaki">Ssaki</a>
+        <a href="#ptaki">Ptaki</a>
+        <a href="#gady">Gady</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <section id="ssaki" class="animal-section">
+        <h2>🐘 Ssaki</h2>
+        <p>W naszej kolekcji znajdziesz majestatyczne słonie, zwinne małpy oraz dzikie lwy. Każde zwierzę ma swoją historię i wyjątkowy charakter.</p>
+    </section>
+
+    <section id="ptaki" class="animal-section">
+        <h2>🦜 Ptaki</h2>
+        <p>Od kolorowych papug po szybujące orły – nasze ptaki pochodzą z różnych zakątków świata. Ich śpiew i barwy wprowadzają niezwykłą atmosferę.</p>
+    </section>
+
+    <section id="gady" class="animal-section">
+        <h2>🐍 Gady</h2>
+        <p>Nie bój się! W naszym zoo spotkasz przyjazne żółwie, ciekawe kameleony i imponujące węże. Każdy z nich ma swoje tajemnice.</p>
+    </section>
+
+    <section id="galeria">
+        <h2>📸 Galeria zwierząt</h2>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1552410260-0fd9b6b8b6c8" alt="Słoń">
+            <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6" alt="Lew">
+            <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d" alt="Papuga">
+            <img src="https://images.unsplash.com/photo-1601758123927-1978a05b5ca0" alt="Żółw">
+        </div>
+    </section>
+
+    <section id="kontakt">
+        <h2>📞 Kontakt</h2>
+        <p>Masz pytania? Skontaktuj się z nami!</p>
+        <p><strong>Email:</strong> kontakt@zoosafari.pl</p>
+        <p><strong>Telefon:</strong> +48 123 456 789</p>
+        <p><strong>Adres:</strong> ul. Zwierzęca 5, 00-000 Safari Miasto</p>
+    </section>
+
+    <footer>
+        <p>© 2025 ZOO Safari – Wszystkie prawa zastrzeżone.</p>
+    </footer>
+</body>
+</html>
