@@ -1,0 +1,161 @@
+sudo cp -rp /etc/kubernetes/admin.conf .kube/config
+sudo chown student:student -R .kube 
+kubectl get nodes
+kubectl get po -n kube-system 
+sudo kubeadm token create --print-join-command
+watch -n1 kubectl get po -n kube-system 
+kubectl get po -A -o wide
+watch -n1 kubectl get po -n kube-system 
+kubectl get ns 
+kubectl get namespaces 
+kubectl create namespace lxk
+kubectl get ns
+kubectl edit ns lxk 
+kubectl describe ns lxk 
+kubectl delete ns lxk 
+kubectl api-resources 
+kubectl api-resources | grep -i false | wc -c
+kubectl api-resources | grep -i false | wc -l
+kubectl api-resources | wc -l
+git clone https://github.com/mariano-italiano/lx-k_Nov.git
+cd lx-k_Nov/
+mkdir day1
+cd day1
+vi simple-pod.yaml
+mv simple-pod.yaml nginx.yaml 
+vi nginx.yaml
+kubectl apply -f nginx.yaml 
+kubectl get po
+kubectl describe po nginx 
+kubectl run ubuntu-pod --image ubuntu
+kubectl get po 
+watch -n1 kubectl get po
+kubectl logs ubuntu-pod
+kubectl logs nginx
+kubectl logs pod/nginx
+kubectl get deploy
+kubectl get deploy -n kube-system
+kubectl logs -n kube-system deployments/coredns 
+kubectl run test-httpd --image httpd -o yaml --dry-run=client
+kubectl run test-httpd --image httpd -o yaml --dry-run=client > test-httpd.yaml
+kubectl run test-httpd --image httpd -o yaml --dry-run=server
+kubectl run nginx --image httpd -o yaml --dry-run=server
+kubectl apply -f test-httpd.yaml --v=8
+kubectl get po
+kubectl logs test-httpd 
+kubectl logs nginx
+kubectl get po
+kubectl delete pod ubuntu-pod 
+kubectl run ubuntu-pod --image ubuntu --dry-run=client -o yaml > ubuntu-pod.yaml
+vi ubuntu-pod.yaml
+kubectl apply -f ubuntu-pod.yaml
+kuebcget po
+kubectl get po
+kubectl exec --help
+kubectl exec -it ubuntu-pod -- sh
+kubectl exec -it ubuntu-pod -- uptime
+kubectl exec -it ubuntu-pod -- ls -la 
+ls -la
+kubectl exec -it ubuntu-pod -- bash
+kubectl get po --show-labels 
+kubectl get po -l run
+kubectl get po -l run=test
+kubectl get po -l run=ubuntu-pod
+kubectl get po -n kube-system --show-labels 
+kubectl get po -n kube-system --selector 'component notin(etcd), tier in (control-plane)'
+vi ubuntu-pod.yaml 
+kubectl get po ubuntu-pod -o yaml
+vi multi-container-pod.yaml
+cp nginx.yaml multi-container-pod.yaml
+vi multi-container-pod.yaml
+kubectl apply -f multi-container-pod.yaml
+kubectl get pod 
+kubectl logs multi-container-pod --all-containers 
+kubectl get pod 
+kubectl logs multi-container-pod -c nginx
+kubectl logs multi-container-pod -c httpd
+vi multi-container-pod.yaml
+kubectl replace --force -f multi-container-pod.yaml
+kubectl get pod 
+kubectl logs multi-container-pod -c nginx
+kubectl logs multi-container-pod -c ubuntu
+kubectl logs multi-container-pod
+cp -rp multi-container-pod.yaml sidecar-pod.yaml
+vi sidecar-pod.yaml
+kubectl apply -f sidecar-pod.yaml 
+watch -n1 kubectl get po
+kubectl exec -it sidecar-pod -- bash
+kubectl exec -it sidecar-pod -- sh
+kubectl exec -it sidecar-pod -c sidecar  -- sh
+kubectl logs sidecar-pod 
+kubectl logs sidecar-pod --all-containers 
+cp nginx.yaml init-pod1.yaml
+vi init-pod1.yaml
+kubectl apply -f init-pod1.yaml
+vi init-pod1.yaml
+kubectl apply -f init-pod1.yaml
+vi init-pod1.yaml
+kubectl apply -f init-pod1.yaml
+watch -n1 kubectl get po
+kubectl logs init-pod1 
+kubectl logs init-pod1 -c delay
+vi init-pod1.yaml
+kubectl replace --force -f init-pod1.yaml 
+watch -n1 kubectl get po
+kubectl logs init-pod1 -c delay
+kubectl logs init-pod1 
+cp -rp init-pod1.yaml init-pod.yaml
+vi init-pod.yaml
+kubectl apply -f init-pod.yaml 
+watch -n1 kubectl get po 
+kubectl logs init-pod -c download
+kubectl logs init-pod --all-containers 
+kubectl exec -it init-pod -- sh 
+kubectl exec -it init-pod -- bash
+kubectl get po -o wide
+kubectl get po
+vi .kube/config 
+sudo useradd -m -s /bin/bash devops
+sudo passwd devops
+openssl genrsa -out devops.key
+openssl req -new -key devops.key -out devops.csr -subj "/CN=devops"
+ls -la 
+mv devops.* lx-k_Nov/day1/
+cd lx-k_Nov/day1/
+ls -la
+cat devops.csr | base64 | tr -d '\n'
+vi user-request-devops.yaml
+kubectl apply -f user-request-devops.yaml
+kubectl get csr
+kubectl get csr user-request-devops -o yaml
+kubectl certificate approve user-request-devops
+kubectl get csr
+kubectl get csr user-request-devops -o yaml
+kubectl get csr user-request-devops -o jsonpath='{.status.certificate}' | base64 -d > devops.crt
+vi devops.crt
+kubectl --kubeconfig config-devops config set-cluster dev-cluster --insecure-skip-tls-verify=true --server https://192.168.189.128:6443 
+vi config-devops 
+kubectl --kubeconfig config-devops config  set-credentials devops --client-certificate devops.crt --client-key devops.key --embed-certs 
+vi config-devops 
+kubectl --kubeconfig config-devops config set-context my-context --cluster dev-cluster --user devops
+vi config-devops 
+kubectl create ns devops-ns
+kubectl create role --help
+kubectl create role devops-role --verb=get,list,watch --resource=rs.apps --resource=pods -n devops-ns 
+kubectl get role -n devops-ns 
+kubectl describe  role -n devops-ns 
+kubectl get role -n devops-ns -o yaml
+kubectl -n devops-ns create rolebinding --help 
+kubectl -n devops-ns create rolebinding devops-rolebinding --role devops-role --user devops 
+kubectl describe rolebindings.rbac.authorization.k8s.io -n devops-ns 
+cat config-devops 
+sudo cp -rp config-devops /home/devops/.kube/config 
+sudo chown -R devops:devops /home/devops/.kube/
+vi .kube/config
+vi /home/student/.kube/config 
+kubectl edit role -n devops-ns devops-role 
+kubectl delete role -n devops-ns devops-role 
+kubectl create role devops-role --verb=create,get,list,watch --resource=rs.apps --resource=pods -n devops-ns 
+kubectl describe role -n devops-ns 
+history 
+history | awk '$1 > 192' | cut -c 8- > day1-history.txt 
