@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: parallel-job
+spec:
+  completions: 10
+  ttlSecondsAfterFinished: 60
+  parallelism: 5
+  template:
+    spec:
+      containers:
+      - name: delay
+        image: busybox
+        command: ['/bin/sleep']
+        args: ["15"]
+      restartPolicy: Never

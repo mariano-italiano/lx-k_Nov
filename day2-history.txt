@@ -1,0 +1,234 @@
+vi nodename-pod.yaml
+kubectl get po -o wide
+vi nodename-pod.yaml
+kubectl apply -f nodename-pod.yaml
+vi nodename-pod.yaml
+kubectl apply -f nodename-pod.yaml
+kubectl get po -o wide
+kubectl delete pod nodename-pod 
+vi nodename-pod.yaml 
+kubectl apply -f nodename-pod.yaml
+kubectl get po -o wide
+kubectl events 
+kubectl get events -n default 
+kubectl delete pod nodename-pod 
+kubectl get pod 
+vi nodename-pod.yaml 
+kubectl apply -f nodename-pod.yaml
+vi nodename-pod.yaml 
+kubectl get pod 
+kubectl get pod 0o wide
+kubectl get pod -o wide
+cp -rp nodename-pod.yaml nodeselector-pod.yaml
+vi nodeselector-pod.yaml
+kubectl apply -f nodeselector-pod.yaml 
+kubectl get pod -o wide
+kubectl events 
+kubectl get nodes --show-labels 
+kubectl get pod -o wide
+kubectl label node worker2 zone=az1
+kubectl get pod -o wide
+kubectl describe nodes master 
+kubectl get pod -o wide
+kubectl run taint-pod --image nginx 
+kubectl get pod -o wide
+kubectl events 
+kubectl get pod -o wide
+cp -rp nodename-pod.yaml toleration-pod.yaml
+vi toleration-pod.yaml
+kubectl get pod -o wide
+kubectl apply -f toleration-pod.yaml 
+kubectl get pod -o wide
+kubectl edit pod toleration-pod 
+kubectl taint node  worker1 storage=none:NoExecute
+kubectl taint node worker1 storage=none:NoExecute-
+kubectl taint node worker1 dev-
+kubectl describe node worker1| grep -i taint -A3
+kubectl get po -o wide
+vi node-affinity-pod.yaml
+kubectl label node worker1 kubernetes.io/country=france
+kubectl label node worker2 kubernetes.io/country=poland
+kubectl label node worker2 kubernetes.io/disks=flash 
+kubectl apply -f node-affinity-pod.yaml 
+kubectl get po -o wide
+kubectl run test-pod --image nginx
+kubectl get po -o wide
+vi pod-affinity-pod.yaml
+kubectl get po --show-labels 
+kubectl label pod app=app1
+kubectl label pod with-node-affinity app=app1
+kubectl get po --show-labels 
+vi pod-affinity-pod.yaml
+kubectl apply -f pod-affinity-pod.yaml 
+kubectl get po -o wide
+vi my-replipcaset.yaml
+kubectl get po --show-labels 
+kubectl label po nginx tier=frontend
+kubectl get po --show-labels 
+kubectl apply -f my-replipcaset.yaml 
+kubectl get po --show-labels 
+kubectl delete pod -l tier=frontend 
+kubectl get po --show-labels 
+kubectl get po,rs 
+kubectl get rs --show-labels 
+kubectl describe rs my-replicaset 
+kubectl get pod -l tier=fronten
+kubectl get pod -l tier=frontend
+kubectl run dirty-pod --labels tier=frontend --image nginx
+kubectl get pod -l tier=frontend
+kubectl get po --show-labels 
+kubectl events 
+kubectl scale rs my-replicaset --replicas 10
+kubectl get po --show-labels 
+kubectl get rs
+kubectl scale rs my-replicaset --replicas 1
+kubectl get rs
+kubectl get po --show-labels 
+vi my-replipcaset.yaml 
+vi nginx-deploymentyaml
+vi nginx-deployment.yaml
+kubectl apply -f nginx-deployment.yaml
+kubectl get po,rs,deploy
+kubectl scale deployment nginx-deployment --replicas 0
+kubectl get po,rs,deploy
+kubectl scale deployment nginx-deployment --replicas 8
+kubectl get po,rs,deploy
+kubectl describe deployments.apps nginx-deployment 
+kubectl edit deployments.apps nginx-deployment 
+kubectl set image deployments nginx-deployment web=nginx:1.19.2 
+kubectl rollout status deployment nginx-deployment 
+kubectl get po 
+kubectl describe deployments.apps nginx-deployment 
+kubectl get deplo,rs
+kubectl get deploy,rs
+kubectl annotate deployments.apps nginx-deployment kubernetes.io/change-cause="updated image from 1.14.2 to 1.19.2, change request: ABC:1234 , implementer: Marcin K. , date: " 
+kubectl rollout history deployment nginx-deployment 
+kubectl edit deployments.apps nginx-deployment 
+watch -n1 kubectl get po
+kubectl rollout status deployment nginx-deployment 
+kubectl rollout history deployment nginx-deployment 
+kubectl set image deployments nginx-deployment web=nginx:broken
+kubectl rollout history deployment nginx-deployment 
+kubectl rollout status deployment nginx-deployment 
+kubectl rollout undo deployment nginx-deployment --to-revision 2
+kubectl rollout history deployment nginx-deployment 
+kubectl get rs
+kubectl describe rs nginx-deployment-64dd9d785f
+kubectl delete rs te image to tag latest - DO NOT
+kubectl delete rs nginx-deployment-64dd9d785f
+kubectl rollout history deployment nginx-deployment 
+kubectl edit deployments.apps nginx-deployment 
+kubectl rollout restart deployment nginx-deployment 
+kubectl edit deployments.apps nginx-deployment 
+kubectl rollout history deployment nginx-deployment 
+kubectl rollout undo deployment nginx-deployment --to-revision 5
+kubectl set image deployments nginx-deployment web=nginx:latest --record 
+kubectl rollout history deployment nginx-deployment 
+kubectl get po 
+kubectl delete all --all
+kubectl get po 
+ls -la 
+cp -rp nodename-pod.yaml readiness-pod.yaml
+vi readiness-pod.yaml
+kubectl apply -f readiness-pod.yaml
+watch -n1 kubectl get po 
+kubectl events 
+kubectl exec -it readiness-pod -- bash
+kubectl events 
+kubectl exec -it readiness-pod -- bash
+kubectl events 
+kubectl exec -it readiness-pod -- bash
+kubectl events 
+kubectl get po
+vi livenes-pod.yaml
+kubectl apply -f livenes-pod.yaml
+watch -n1 kubectl get po 
+kubectl replace --froce -f livenes-pod.yaml 
+kubectl replace --force -f livenes-pod.yaml 
+watch -n1 kubectl get po 
+vi livenes-pod.yaml 
+kubectl replace --force -f livenes-pod.yaml 
+watch -n1 kubectl get po 
+kubectl events 
+kubectl get po
+kubectl delete po liveness-pod rrea
+kubectl delete po liveness-pod readiness-pod 
+vi my-daemonset.yaml
+kubectl apply -f my-daemonset.yaml 
+vi my-daemonset.yaml
+kubectl apply -f my-daemonset.yaml 
+kubectl get po 
+kubectl get po 0o wide
+kubectl get po -o wide
+kubectl delete pod my-daemonset-q5mv9 
+kubectl get po -o wide
+kubectl rollout restart ds my-daemonset 
+kubectl get po -o wide
+watch -n1 kubectl get po 
+viimy-sts.yaml
+vi my-sts.yaml
+kubectl apply -f my-sts.yaml 
+kubectl get sts,po 
+watch -n1 kubectl get sts,po 
+vi my-sts.yaml 
+kubectl replace --force -f my-sts.yaml 
+watch -n1 kubectl get sts,po 
+kubectl scale sts web --repliacs 9
+kubectl scale sts web --repliacas 9
+kubectl scale sts web --replicas 9
+watch -n1 kubectl get sts,po 
+kubectl scale sts web --replicas 1
+watch -n1 kubectl get sts,po 
+kubectl get svc 
+vi job-pi.yaml
+kubectl apply -f job-pi.yaml
+kubectl get job,po
+watch -n1 kubectl get job,po
+vi job-sleep.yaml
+kubectl get po
+kubectl apply -f job-sleep.yaml 
+watch -n1 kubectl get job,po
+kubectl logs pod/job-sleep-jtrp2
+vi job-sleep.yaml 
+kubectl get po
+kubectl delete job job-sleep 
+kubectl get po
+kubectl apply -f job-sleep.yaml 
+watch -n1 kubectl get job,po
+kubectl logs job-pi-64sqb 
+cp -rp job-sleep.yaml job-parallel.yaml
+vi job-parallel.yaml
+kubectl apply -f job-parallel.yaml
+watch -n1 kubectl get job,po
+vi hello-cronjob.yaml
+kubectl apply -f hello-cronjob.yaml
+watch -n1 kubectl get job,po
+watch -n1 kubectl get cj,job,po
+kubectl delete  -f hello-cronjob.yaml 
+kubectl get po -
+kubectl get po 
+kubectl create deploy web-test --image nginx --replicas 1
+kubectl get po 
+kubectl get po --show-labels 
+kubectl expose deployment web-test --port 80 --name clusterip-svc 
+kubectl get svc
+kubectl exec -it web-test-54454879b-l496j -- bash
+kubectl exec -it web-0  -- bash
+kubectl create deployment another-web --image nginx --replicas 1
+kubectl delete deploy another-web 
+kubectl create deployment another-web --image nginx --replicas 1 -n kube-system 
+kubectl exec -it -n kube-system another-web-6dc4474455-ccxnr -- bash
+kubectl expose deployment web-test --name nodeport-svc --port 80 --type NodePort
+kubectl get svc
+kubectl edit svc nodeport-svc 
+kubectl get svc
+kubectl expose  deployment web-test --name lb-svc --port 80 --type LoadBalancer
+kuebcget svc 
+kubectl cget svc 
+kubectl get svc 
+kubectl edit svc lb-svc 
+kubectl get svc 
+kubectl delete ns ingress-nginx 
+history
+history | | awk '$1 > 449' | cut -c 8- > ../day2-history.txt
+history | awk '$1 > 449' | cut -c 8- > ../day2-history.txt
