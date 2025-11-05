@@ -198,3 +198,92 @@ git status
 cd ..
 history
 history|  awk '$1 > 730' | cut -c 8- > day3-history.txt
+git status
+git add .
+git commi -m "adding day3 files"
+git commit -m "adding day3 files"
+git push
+cd day3
+kubectl top 
+kubectl top node
+wget wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+vi components.yaml 
+kubectl apply -f components.yaml
+kubectl get po -n kube-system
+kubectl top nodes
+kubectl top pods 
+kubectl top pods --sort-by cpu
+kubectl top pods --sort-by mem
+kubectl top pods --sort-by memory
+kubectl top pods --containers 
+kubectl apply -f ../day1/multi-container-pod.yaml 
+kubectl top pods --containers 
+kubectl top 
+kubectl top pods --containers 
+helm 
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod +x get_helm.sh 
+./get_helm.sh 
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+helm search repo bitnami/wordpress
+helm search repo bitnami/nginx
+helm search repo bitnami/mariadb
+helm install bitnami/wordpress --generate-name 
+kubectl get secret --namespace default wordpress-1762351691 -o jsonpath="{.data.wordpress-password}" | base64 -d && echo 
+kubectl get po,pv,pvc 
+helm list -A
+helm uninstall -n default wordpress-1762351691
+kubectl get sc 
+kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+kubectl get sc 
+helm install bitnami/wordpress --generate-name --namespace wordpress --create-namespace
+kubectl get all,pv -n wordpress 
+watch -n1 kubectl get all,pv -n wordpress 
+helm search repo bitnami/mariadb --versions
+watch -n1 kubectl get all,pv -n wordpress 
+kubectl edit -n wordpress pod wordpress-1762352011-c854fcff9-jcbh8 
+watch -n1 kubectl get all,pv -n wordpress 
+kubectl get secret --namespace default wordpress-1762351691 -o jsonpath="{.data.wordpress-password}" | base64 -d && echo 
+kubectl get secret --namespace wordpress  -o jsonpath="{.data.wordpress-password}" | base64 -d && echo 
+kubectl get secrets -n wordpress
+kubectl get secret --namespace wordpress wordpress-1762352011  -o jsonpath="{.data.wordpress-password}" | base64 -d && echo 
+helm create myhelmchart 
+cd myhelmchart/
+tree
+sudo apt install tree
+tree
+ls -al 
+vi Chart.yaml 
+vi values.yaml 
+cd templates/
+rm -rf tests/ service.yaml ingress.yaml serviceaccount.yaml hpa.yaml httproute.yaml 
+ls -la
+vi NOTES.txt 
+vi deployment.yaml 
+rm deployment.yaml 
+kubectl create deployment nginx-web-chart --image nginx --replicas 1 -o yaml --dry-run=client
+kubectl create deployment nginx-web-chart --image nginx --replicas 1 -o yaml --dry-run=client > deployment.yaml 
+vi deployment.yaml
+cd ..
+vi values.yaml 
+vi templates/deployment.yaml 
+vi values.yaml 
+cd ..
+helm lint myhelmchart/
+helm package myhelchart --version 0.1 
+helm package myhelmchart --version 0.1 
+helm install -n helmchart --create-namespace myhelmchart-0.1.tgz --generate-name
+vi myhelmchart/templates/deployment.yaml 
+helm package myhelchart --version 0.2
+helm package myhelmchart --version 0.2
+helm install -n helmchart --create-namespace myhelmchart-0.2.tgz --generate-name
+kubectl get all -n helmchart 
+helm uninstall -n helmchart myhelmchart-0-1762353259
+kubectl get all -n helmchart 
+cp -rp myhelmchart/values.yaml prod-values.yaml
+vi prod-values.yaml
+helm install -n helmchart --create-namespace myhelmchart-0.2.tgz --generate-name --values prod-values.yaml 
+kubectl get all -n helmchart 
+cd ..
+history|  awk '$1 > 730' | cut -c 8- > day3-history.txt
