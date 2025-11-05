@@ -1,0 +1,6 @@
+# branch name
+branch=master
+
+# version of my app
+APP_VERSION=1.0
+APP_DIR=/opt/app1

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-pod
+spec:
+  containers:
+    - name: test
+      image: nginx
+      env: 
+      - name: BRANCH
+        valueFrom:
+          configMapKeyRef:
+            name: test-cm
+            key: branch
+      envFrom:
+      - configMapRef:
+          name: from-env-file

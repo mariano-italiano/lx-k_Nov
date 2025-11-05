@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookRent – Wypożyczaj książki online</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background: #f8f8f8;
+            color: #333;
+        }
+        header {
+            background: #3f51b5;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+        nav {
+            background: #283593;
+            display: flex;
+            justify-content: center;
+            padding: 0.5rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: #e8eaf6;
+        }
+        .books {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .book {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 1rem;
+            padding: 1rem;
+            width: 200px;
+            text-align: center;
+        }
+        footer {
+            background: #3f51b5;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BookRent</h1>
+        <p>Twoja biblioteka online</p>
+    </header>
+
+    <nav>
+        <a href="#">Strona główna</a>
+        <a href="#">Książki</a>
+        <a href="#">Moje wypożyczenia</a>
+        <a href="#">Kontakt</a>
+    </nav>
+
+    <section class="hero">
+        <h2>Wypożyczaj książki bez wychodzenia z domu</h2>
+        <p>Przeglądaj tysiące tytułów i czytaj, kiedy chcesz!</p>
+        <button onclick="alert('Funkcja w trakcie budowy!')">Zacznij teraz</button>
+    </section>
+
+    <section class="books">
+        <div class="book">
+            <h3>„Lalka”</h3>
+            <p>Bolesław Prus</p>
+            <button>Wypożycz</button>
+        </div>
+        <div class="book">
+            <h3>„Zbrodnia i kara”</h3>
+            <p>Fiodor Dostojewski</p>
+            <button>Wypożycz</button>
+        </div>
+        <div class="book">
+            <h3>„Wiedźmin”</h3>
+            <p>Andrzej Sapkowski</p>
+            <button>Wypożycz</button>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 BookRent – Wszystkie prawa zastrzeżone
+    </footer>
+</body>
+</html>
+

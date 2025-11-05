@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap
+data:
+  key1: value1
+  key2: "10.5"
+  config.json: |
+    {"attr1": "value1",
+    "attr2": "value2"}
+  BRANCH_NAME: develop
+  comment: |
+    to jest 
+    komentarz
+    wielolinijkowy
+    o..
+
